@@ -21,7 +21,7 @@ export class AuthController {
         const token = await sign(request, response, next)
 
         return { user, token }
-        return user
+        // return user
     }
 
     async register(request: Request, response: Response, next: NextFunction) {

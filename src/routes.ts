@@ -14,20 +14,20 @@ export const Routes = [{
     method: "get",
     route: "/todos",
     controller: TodoController,
-    action: "all",
+    action: "all"
 }, {
     method: "get",
     route: "/todos/:id",
     controller: TodoController,
-    action: "one",
+    action: "one"
 }, {
     method: "post",
     route: "/todos",
     controller: TodoController,
-    action: "save",
+    action: "save"
 }, {
     method: "delete",
     route: "/todos/:id",
     controller: TodoController,
-    action: "remove",
+    action: "remove"
 }]

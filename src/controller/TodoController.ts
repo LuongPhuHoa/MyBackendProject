@@ -18,17 +18,18 @@ export class TodoController {
         })
 
         if (!todo) {
-            return "unregistered todo"
+            return "Unregistered Todo"
         }
         return todo
     }
 
     async save(request: Request, response: Response, next: NextFunction) {
-        const { title, description } = request.body;
+        const { title, completed, userID } = request.body;
 
         const todo = Object.assign(new Todo(), {
             title,
-            description
+            completed,
+            userID
         })
 
         return this.todoRepository.save(todo)
@@ -40,12 +41,11 @@ export class TodoController {
         let todoToRemove = await this.todoRepository.findOneBy({ id })
 
         if (!todoToRemove) {
-            return "this todo not exist"
+            return "This Todo not exist"
         }
 
         await this.todoRepository.remove(todoToRemove)
 
-        return "todo has been removed"
+        return "Todo has been removed"
     }
-
 }   

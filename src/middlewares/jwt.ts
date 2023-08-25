@@ -15,14 +15,18 @@ export const sign = async (request: Request, response: Response, next: NextFunct
     return jwt
 }
 
-export async function verify(request: Request, response: Response, next: NextFunction): Promise<JWTVerifyResult> {
+export async function verify(request: Request, response: Response, next: NextFunction) {
     const token = request.headers["token"]
 
     if (!token) {
-        return Promise.reject("unauthorized")
+        return Promise.reject("Unauthorized")
     }
 
     const payload = await jwtVerify(token, new TextEncoder().encode(process.env.JWT_SECRET))
 
-    return payload
+    if (!payload) {
+        return Promise.reject("Unauthorized")
+    } else {
+        next()
+    }
 }

@@ -4,6 +4,8 @@ import { Request, Response } from "express"
 import { AppDataSource } from "./data-source"
 import { Routes } from "./routes"
 import { User } from "./entity/User"
+import { Todo } from "./entity/Todo"
+import { verify } from "crypto"
 
 AppDataSource.initialize().then(async () => {
 
@@ -24,6 +26,10 @@ AppDataSource.initialize().then(async () => {
             }
         })
     })
+
+    //apply middleware
+    router.use("/todos/*", verify)
+
 
     // setup express app here
     // ...
